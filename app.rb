@@ -22,7 +22,7 @@ get "/projects/:id" do |id|
 
     buildTypes["buildType"].each do |build|
         
-      json = open(SITE + build["href"] + "/builds/", {'Accept' => "application/json"}).read
+      json = open(SITE + build["href"] + "/builds?count=5", {'Accept' => "application/json"}).read
     
       build["history"] = Crack::JSON.parse(json)["build"]
     end
