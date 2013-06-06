@@ -7,9 +7,9 @@
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.1.7/underscore-min.js"></script>
 		<script src="http://cdnjs.cloudflare.com/ajax/libs/sammy.js/0.6.3/sammy.min.js"></script>
-        <script src="https://github.com/janl/mustache.js/raw/master/mustache.js"></script>
-		<script src="https://github.com/quirkey/sammy/raw/v0.6.3/lib/min/plugins/sammy.mustache-latest.min.js"></script>
-		<script src="https://github.com/quirkey/sammy/raw/v0.6.3/lib/min/plugins/sammy.mustache-0.6.3.min.js"></script>
+        <script src="http://cdnjs.cloudflare.com/ajax/libs/mustache.js/0.7.2/mustache.min.js"></script>
+		<script src="/sammy.mustache-latest.min.js"></script>
+		<script src="/sammy.mustache-0.6.3.min.js"></script>
 		<script>
             (function($) {
 
@@ -44,6 +44,7 @@
                                 _.each(json.buildType, function(build){
                                     build.color = _.first(build.history).status == "SUCCESS" ? "green" :"red";
                                     build.successCount = _.select(build.history, function (build) {return build.status == "SUCCESS"}).length;
+                                    if(build.successCount > 5){ build.successCount = 5 }
                                     build.imageURL = "/images/memes/" + meme[build.color][build.successCount];
                                     builds.builds.push(build);
                                 })
